@@ -114,17 +114,10 @@ def getXidSoundSensorParams(key):
         )
     )
     params[f'{key}Channels'] = Param(
-        7, valType="code", inputType="single", categ="Device",
+        1, valType="code", inputType="single", categ="Device",
         label=_translate("Num. channels"),
         hint=_translate(
             "How many microphones are plugged into this device?"
-        )
-    )
-    params[f'{key}Threshold'] = Param(
-        0.5, valType='code', inputType="single", categ='Device',
-        label=_translate("Threshold"),
-        hint=_translate(
-            "Threshold volume (0 for min, 1 for max) above which to register a response"
         )
     )
 
@@ -141,7 +134,6 @@ def writeXidSoundSensorCode(self, buff, cls, key):
         f"    deviceName=%(deviceLabel)s,\n"
         f"    pad=%({key}Index)s,\n"
         f"    channels=%({key}Channels)s,\n"
-        f"    threshold=%({key}Threshold)s,\n"
         f")\n"
     )
     buff.writeIndentedLines(code % inits)
